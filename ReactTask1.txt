@@ -1,0 +1,116 @@
+Task: 1 - 1:
+
+import React from "react";
+export default class Task1Class extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            x:0
+        }
+    }
+    increment=()=>{
+        
+        this.setState({x:this.state.x+1});
+    }
+    decrement=()=>{
+        this.setState({x:this.state.x-1});
+    }
+    render(){
+        return(
+            <div>
+
+                <p>Current value:{this.state.x}</p>
+                <button onClick={this.increment}>Increment</button>
+                <button onClick={this.decrement}>Decrement</button>
+                <form onSubmit={this.handleSubmit}></form>
+            </div>
+        )
+    }
+}
+
+Task: 1 - 2:
+
+import { Component } from "react";
+import React from 'react';
+
+export default class Task2Class extends React.Component{
+    constructor(props){
+        super(props)
+            this.state={
+
+                mobiles: [
+                    { id: 1, model: "iPhone 15", price: 79999 },
+                    { id: 2, model: "Samsung S23", price: 74999 },
+                    { id: 3, model: "OnePlus 11", price: 56999 },
+            ]
+        }
+    }
+    render(){
+        return(
+            <div>
+
+                {this.state.mobiles.map((mobile)=>(                    
+                    <ChildClass index={mobile.id} mobile={mobile}/>
+                ))}
+            </div>
+        )
+    }
+}
+
+class ChildClass extends Component{
+    render(){
+        const {id,model,price}=this.props.mobile
+        return(
+            <div style={{"display":"flex"}}>
+                <p>{id}</p>
+                <p>{model}</p>
+                <p>{price}</p>
+            </div>
+        )
+    }
+}
+
+Task-1.3:
+import React, { Component } from 'react'
+
+export default class Task3Class extends React.Component {
+  constructor(props){
+    super(props)
+    this.state={
+      x:0,
+      y:0,
+      res:0
+    }
+  }
+  handlexChange=(event)=>{
+    this.setState({x:parseInt(event.target.value)})
+  }
+  handleyChange=(event)=>{
+    this.setState({y:parseInt(event.target.value)})
+  }
+  render(){
+    return (
+      <div>
+        <input type="text" name="x" id="num1" onChange={this.handlexChange}/>
+        <input type="text" name="y" id="num2" onChange={this.handleyChange}/>
+        
+        <Calci num1={this.state.x} num2={this.state.y}/>
+      </div>
+    )
+  }
+}
+
+class Calci extends Component{
+  render(){
+    const {num1,num2}= this.props
+    return(
+      <div className="task3">
+        <p>Result:</p>
+        <p>Addition:{num1+num2}</p>
+        <p>Subtraction:{num1-num2}</p>
+        <p>Multiplication:{num1*num2}</p>
+      </div>
+    )
+  }
+}
+
