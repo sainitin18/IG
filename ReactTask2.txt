@@ -1,0 +1,147 @@
+Task:2 - 1
+import React, { useState } from "react";
+
+const LoginForm = () => {
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (id === "iguser" && password === "password") {
+      alert("Valid User");
+    } else {
+      alert("Invalid User");
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>ID:</label>
+        <input
+          type="text"
+          value={id}
+          onChange={(e) => setId(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label>Password:</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  );
+};
+
+export default LoginForm;
+
+Task: 2 - 2
+// SignupForm.jsx
+import React, { useState } from "react";
+
+const SignupForm = ({ onSignup }) => {
+  const [customerId, setCustomerId] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("");
+  const [city, setCity] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const customerDetails = {
+      customerId,
+      name,
+      email,
+      gender,
+      city,
+    };
+    onSignup(customerDetails);
+  };
+
+  return (
+    <form onSubmit={handleSubmit} style={{ display: "grid", gap: "10px" }}>
+      <div>
+        <label>Customer ID: </label>
+        <input
+          type="text"
+          value={customerId}
+          onChange={(e) => setCustomerId(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label>Name: </label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label>Email: </label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label>Gender: </label>
+        <input
+          type="radio"
+          value="Male"
+          checked={gender === "Male"}
+          onChange={(e) => setGender(e.target.value)}
+        />
+        Male
+        <input
+          type="radio"
+          value="Female"
+          checked={gender === "Female"}
+          onChange={(e) => setGender(e.target.value)}
+        />
+        Female
+      </div>
+      <div>
+        <label>City: </label>
+        <select value={city} onChange={(e) => setCity(e.target.value)} required>
+          <option value="">Select City</option>
+          <option value="Hyderabad">Hyderabad</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Pune">Pune</option>
+          <option value="Bangalore">Bangalore</option>
+        </select>
+      </div>
+      <button type="submit">Review</button>
+    </form>
+  );
+};
+
+export default SignupForm;
+
+// ReviewDetails.jsx
+import React from "react";
+
+const ReviewDetails = ({ customer }) => {
+  return (
+    <div>
+      <h3>Review Customer Details</h3>
+      <p><strong>Customer ID:</strong> {customer.customerId}</p>
+      <p><strong>Name:</strong> {customer.name}</p>
+      <p><strong>Email:</strong> {customer.email}</p>
+      <p><strong>Gender:</strong> {customer.gender}</p>
+      <p><strong>City:</strong> {customer.city}</p>
+    </div>
+  );
+};
+
+export default ReviewDetails;
+
